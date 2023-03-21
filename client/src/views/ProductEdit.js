@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { create, getOne, remove, update } from '../models/ProductModel'
 
 function ProductEdit() {
