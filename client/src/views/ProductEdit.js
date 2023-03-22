@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { create, getOne, remove, update } from '../models/ProductModel'
 
 function ProductEdit() {
@@ -29,9 +29,6 @@ function ProductEdit() {
   }, [productId]);
 console.log(product)
 
-setTimeout(function() {
-   
-}, 1000);
 
 function onChange(e){
   const name = e.target.name;

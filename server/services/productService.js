@@ -81,10 +81,15 @@ async function addRating(productId, rating) {
     return createResponseError(422, "Id är obligatoriskt");
   } else {
     try {
-      rating.productId = productId;
+      let usedRating = rating
+      let usedId = productId
+      rating = {rating: usedRating, productId: usedId}
+      
+      
       const newRating = await db.rating.create(rating);
       return createResponseSuccess(newRating);
     } catch (error) {
+      console.log(error)
       return createResponseError(error.status, error.message);
     }
   }

@@ -25,9 +25,11 @@ router.get("/:id/ratings", (req, res) => {
 });
 
 router.post("/:id/addRating", (req, res) => {
-  const rating = req.body;
-  const id = req.params.id;
-  productService.addRating(id, rating).then((result) => {
+  /* const betyg = req.body.rating
+  console.log(betyg, 'detta är från routern') */
+  const rating = req.body.rating;
+  const productId = req.params.id;
+  productService.addRating(productId, rating).then((result) => {
     res.status(result.status).json(result.data);
   });
 });

@@ -4,7 +4,8 @@ import { getAll } from "../models/ProductModel";
 import findProduct from "../HelperFunctions/findProduct";
 import { Rating } from "@mui/material";
 /* import calculateAverage from "../HelperFunctions/calculateAverage"; */
-import RatingItemSmall from "./RatingItemSmall";
+import RatingItemAverage from "./RatingItemAverage";
+import AddRating from "./AddRating";
 
 function ProductItemLarge({ params }) {
   console.log(params.id);
@@ -30,8 +31,9 @@ function ProductItemLarge({ params }) {
       </Typography>
       <p>{products.description}</p>
       <p>{products.price} SEK</p>
-      <RatingItemSmall key={`ratingItem_id${products.ratings.length}`} products={products} />
-      <li><ul><p>{products.ratings.createdAt}</p><Rating name="customized-10" value={products.ratings.rating} key={`ratingId_${products.ratings.id}`} precision={0.5} max={10}  /></ul></li>
+      <AddRating id={products.id}/>
+      <RatingItemAverage key={`ratingItem_id${products.ratings.length}`} products={products} />
+      <li><ul><p>{products.ratings.createdAt}</p><Rating name="customized-10" value={products.ratings.rating} key={`ratingId_${products.ratings.id}`} precision={0.5} max={10} readOnly /></ul></li>
     </>
     : 
     <>
@@ -46,9 +48,11 @@ function ProductItemLarge({ params }) {
       </Typography>
       <p>{products.description}</p>
       <p>{products.price} SEK</p>
-      <RatingItemSmall key={`ratingItem_id${products.ratings.length}`} products={products} />
+      <AddRating id={products.id}/>
+      <RatingItemAverage key={`ratingItem_id${products.ratings.length}`} products={products} />
+      <p>Användares betyg:</p>
       <li>
-      {products.ratings.map((rating) => <ul><p>{rating.createdAt}</p><Rating name="customized-10" key={`ratingId_${rating.id}`} value={rating.rating} precision={0.5} max={10} /></ul>)} 
+      {products.ratings.map((rating) => <ul><p>{rating.createdAt}</p><Rating name="customized-10" key={`ratingId_${rating.id}`} value={rating.rating} precision={0.5} max={10} readOnly /></ul>)} 
       </li>
     </> 
   ); 
