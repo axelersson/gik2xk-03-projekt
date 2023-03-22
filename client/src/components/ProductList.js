@@ -7,7 +7,6 @@ function ProductList() {
   useEffect(() => {
     getAll().then((products) => setProducts(products));
   }, []);
-  console.log(products);
   return (
     <ul>
       {products &&

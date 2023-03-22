@@ -156,6 +156,24 @@ async function destroy(id) {
   }
 }
 
+async function addCartRow(productId, cartId, amount) {
+  const invalidData = validate((productId, cartId, amount), constraints);
+  if (invalidData) {
+    console.log(invalidData)
+    return createResponseError(422, invalidData);
+    
+  } else {
+    try {
+      console.log(productId, cartId, amount)
+      const newProduct = await db.cartRow.create(product);
+      return createResponseSuccess(newProduct);
+    } catch (error) {
+      console.log(error)
+      return createResponseError(error.status, error.message);
+    }
+  }
+}
+
 module.exports = {
   addRating,
   getById,
@@ -164,4 +182,5 @@ module.exports = {
   create,
   update,
   destroy,
+  addCartRow
 };

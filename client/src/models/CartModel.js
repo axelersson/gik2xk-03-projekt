@@ -10,3 +10,16 @@ export async function getAll() {
     return [];
   }
 }
+
+export async function create(id) {
+  console.log('hej från cartmodel')
+  console.log(id)
+  const result = await api.post(`/cart/${id}`);
+
+  if (result.status === 200) return result.data;
+  else {
+    console.log(result.status);
+    console.log(result.data);
+    return {};
+  }
+}

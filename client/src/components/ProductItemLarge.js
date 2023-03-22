@@ -8,14 +8,11 @@ import RatingItemAverage from "./RatingItemAverage";
 import AddRating from "./AddRating";
 
 function ProductItemLarge({ params }) {
-  console.log(params.id);
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getAll().then((products) => setProducts(findProduct(products, params.id)));
   }, [params]);
-  console.log(products)
   if (products && products.ratings) {
-    console.log(products.ratings.length)
   return (
     
     products.ratings.length == 1 ?

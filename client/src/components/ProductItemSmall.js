@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
+import addToCart from "../HelperFunctions/addToCart" 
 
 function ProductItemSmall({ product }) {
-  console.log(product);
-  console.log(product.id);
   return (
     <>
       <Link to={`/products/${product.id}`}>
@@ -21,9 +20,7 @@ function ProductItemSmall({ product }) {
         <Link to={`/products/${product.id}/edit`}>
           <Button variant="outlined">Ändra produkt</Button>
         </Link>
-        <Link to={`/products/${product.id}/addToCart`}>
-          <Button variant="outlined">Lägg till i varukorg</Button>
-        </Link>
+          <Button onClick={addToCart(product.id)} variant="outlined" >Lägg till i varukorg</Button>
       </div>
     </>
   );
