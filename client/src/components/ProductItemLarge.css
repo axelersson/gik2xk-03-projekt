@@ -1,0 +1,20 @@
+.listan {
+  display: flex;
+  flex-direction: column;
+}
+
+.lista {
+  width: 30%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.lista,
+ul {
+  margin: auto;
+  /* display: flex;
+   */
+}
