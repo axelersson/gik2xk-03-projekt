@@ -62,9 +62,8 @@ async function getAll() {
 async function create(product) {
   const invalidData = validate(product, constraints);
   if (invalidData) {
-    console.log(invalidData)
+    console.log(invalidData);
     return createResponseError(422, invalidData);
-    
   } else {
     try {
       const newProduct = await db.product.create(product);
@@ -81,15 +80,14 @@ async function addRating(productId, rating) {
     return createResponseError(422, "Id är obligatoriskt");
   } else {
     try {
-      let usedRating = rating
-      let usedId = productId
-      rating = {rating: usedRating, productId: usedId}
-      
-      
+      let usedRating = rating;
+      let usedId = productId;
+      rating = { rating: usedRating, productId: usedId };
+
       const newRating = await db.rating.create(rating);
       return createResponseSuccess(newRating);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createResponseError(error.status, error.message);
     }
   }
@@ -158,19 +156,90 @@ async function destroy(id) {
 
 async function addCartRow(productId, cartId, amount) {
   const invalidData = validate((productId, cartId, amount), constraints);
+
   if (invalidData) {
-    console.log(invalidData)
+    console.log(invalidData);
     return createResponseError(422, invalidData);
-    
   } else {
     try {
-      console.log(productId, cartId, amount)
-      const newProduct = await db.cartRow.create(product);
-      return createResponseSuccess(newProduct);
+      cartRows = {
+        productId: productId,
+        cartId: cartId,
+        amount: 1,
+        cart: cartId,
+      };
+      console.log(productId, cartId, amount);
+      const newCartRow = await db.cartRow.create(cartRows).then(
+        db.cartRow.update(amount, {
+          where: { productId: productId, cartId: cartId },
+        })
+      );
+      console.log();
+      return createResponseSuccess(newCartRow);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createResponseError(error.status, error.message);
     }
+  }
+}
+
+async function getAllCartRows() {
+  try {
+    console.log(association);
+    const allCartRows = await db.cartRow.findAll();
+    return createResponseSuccess(allCartRows);
+  } catch (error) {
+    return createResponseError(error.status, error.message);
+  }
+}
+
+async function addProduct(productId, cartId, amount) {
+  console.log(productId, cartId, amount);
+  if (!cartId || !productId || !amount) {
+    return createResponseError(422, "Kan inte hitta det eftersökta");
+  }
+  try {
+    const findCart = await db.cart.findOne({ where: { id: cartId } });
+    const findProduct = await db.product.findOne({
+      where: { id: productId },
+    });
+
+    if (!findCart) {
+      return createResponseError(422, "Felaktigt id för varukorgen");
+    }
+    if (!findProduct) {
+      return createResponseError(422, "Felaktigt id för produkten");
+    }
+
+    let existingcartRow = await db.cartRow.findOne({
+      where: { cartId, productId },
+    });
+    if (existingcartRow) {
+      existingcartRow.amount += +amount;
+    } else {
+      await findCart.addProduct(findProduct);
+      existingcartRow = await db.cartRow.findOne({
+        where: { cartId, productId },
+      });
+      existingcartRow.amount = amount;
+    }
+    await existingcartRow.save();
+    await findCart.save();
+    return createResponseSuccess(existingcartRow);
+  } catch (error) {
+    return createResponseError(error.status, error.message);
+  }
+}
+
+async function getCartRowsById(id) {
+  try {
+    const oneCartRow = await db.cartRow.findOne({
+      where: { id },
+      include: [db.cartrow.product],
+    });
+    return createResponseSuccess(oneCartRow);
+  } catch (error) {
+    return createResponseError(error.status, error.message);
   }
 }
 
@@ -182,5 +251,8 @@ module.exports = {
   create,
   update,
   destroy,
-  addCartRow
+  addCartRow,
+  getAllCartRows,
+  addProduct,
+  getCartRowsById,
 };

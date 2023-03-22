@@ -37,19 +37,19 @@ router.get("/", (req, res) => {
 });
 
 router.post("/:id", (req, res) => {
-  const product = req.params;
-  const cart = 1;
-  const amount = 1;
+  const id = req.params;
+  /*  const cart = 1;
+  const amount = 1; */
   /*   const addToCartObject = {
     cart.cartRow.amount: 1,
 
   } */
-  const invalidData = validate(product, constraints);
+  const invalidData = validate(id, constraints);
   if (invalidData) {
     res.status(400).json(invalidData);
     console.log();
   } else {
-    db.cart.create(cart).then((result) => {
+    db.cart.create(id).then((result) => {
       res.send(result);
     });
   }
