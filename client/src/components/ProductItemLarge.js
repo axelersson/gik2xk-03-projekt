@@ -2,11 +2,9 @@ import { Typography } from "@mui/material";
 import { Rating } from "@mui/material";
 /* import calculateAverage from "../HelperFunctions/calculateAverage"; */
 import RatingItemAverage from "./RatingItemAverage";
-import AddRating from "./AddRating";
 import "./ProductItemLarge.css";
 
 function ProductItemLarge({ products }) {
-  console.log(products.ratings);
   if (products && products.ratings) {
     return products.ratings.length == 1 ? (
       <>
@@ -52,7 +50,6 @@ function ProductItemLarge({ products }) {
         </Typography>
         <p>{products.description}</p>
         <p>{products.price} SEK</p>
-        <AddRating id={products.id} />
         <RatingItemAverage
           key={`ratingItem_id${products.ratings.length}`}
           products={products}

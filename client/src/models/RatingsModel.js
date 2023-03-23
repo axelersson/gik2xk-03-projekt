@@ -13,8 +13,10 @@ export async function getAllRatings({ id }) {
   }
 }
 export async function create(id, rating) {
-  console.log(rating, id)
-  const result = await api.post(`/products/${id}/addRating`, {rating: rating});
+  console.log(rating, id);
+  const result = await api.post(`/products/${id}/addRating`, {
+    rating: rating,
+  });
 
   if (result.status === 200) return result.data;
   else {

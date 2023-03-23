@@ -44,7 +44,7 @@ export async function create(product) {
   }
 }
 export async function remove(id) {
-  const result = await api.delete("/products/", { data: { id } });
+  const result = await api.delete(`/products/${id}`);
 
   if (result.status === 200) return result.data;
   else {

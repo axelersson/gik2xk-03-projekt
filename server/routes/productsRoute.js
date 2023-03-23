@@ -36,7 +36,7 @@ router.post("/:id/addRating", (req, res) => {
 
 router.get("/", (req, res) => {
   productService.getAll().then((result) => {
-/*     console.log(result.data) */
+    /*     console.log(result.data) */
     res.status(result.status).json(result.data);
   });
 });
@@ -58,8 +58,8 @@ router.put("/", (req, res) => {
   });
 });
 
-router.delete("/", (req, res) => {
-  const id = req.body.id;
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
   productService.destroy(id).then((result) => {
     res.status(result.status).json(result.data);
   });

@@ -5,7 +5,7 @@ import ProductItemLarge from "../components/ProductItemLarge";
 import RatingList from "../components/RatingList";
 import addToCart from "../HelperFunctions/addToCart";
 import findProduct from "../HelperFunctions/findProduct";
-import { getAll } from "../models/ProductModel";
+import { getAll, getOne } from "../models/ProductModel";
 import { useEffect, useState } from "react";
 
 function ProductDetail() {
@@ -14,7 +14,13 @@ function ProductDetail() {
   useEffect(() => {
     getAll().then((products) => setProducts(findProduct(products, params.id)));
   }, [params]);
-  console.log(products.ratings);
+
+  /* getOne(productId).then((product) => { */
+
+  /* async function onRate(e){
+     await create(product.id).then(() => console.log('borttaget')); 
+    console.log(e)
+   } */
 
   return (
     <>
@@ -26,8 +32,12 @@ function ProductDetail() {
       <Link to={`/products/${params.id}/edit`}>
         <Button variant="outlined">Uppdatera produkt</Button>
       </Link>
-      {console.log(params.id)}
-      <Button onClick={addToCart(params.id)} variant="outlined">
+      <Button
+        onClick={() => {
+          addToCart(params.id);
+        }}
+        variant="outlined"
+      >
         Lägg till i varukorg
       </Button>
     </>

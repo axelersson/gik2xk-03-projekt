@@ -151,6 +151,7 @@ async function destroy(id) {
     });
     return createResponseMessage(200, "Inlägget raderades");
   } catch (error) {
+    console.log(error);
     return createResponseError(error.status, error.message);
   }
 }
