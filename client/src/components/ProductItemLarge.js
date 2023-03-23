@@ -1,18 +1,11 @@
 import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { getAll } from "../models/ProductModel";
-import findProduct from "../HelperFunctions/findProduct";
 import { Rating } from "@mui/material";
 /* import calculateAverage from "../HelperFunctions/calculateAverage"; */
 import RatingItemAverage from "./RatingItemAverage";
 import AddRating from "./AddRating";
 import "./ProductItemLarge.css";
 
-function ProductItemLarge({ params }) {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    getAll().then((products) => setProducts(findProduct(products, params.id)));
-  }, [params]);
+function ProductItemLarge({ products }) {
   console.log(products.ratings);
   if (products && products.ratings) {
     return products.ratings.length == 1 ? (
@@ -28,7 +21,6 @@ function ProductItemLarge({ params }) {
         </Typography>
         <p>{products.description}</p>
         <p>{products.price} SEK</p>
-        <AddRating id={products.id} />
         <RatingItemAverage
           key={`ratingItem_id${products.ratings.length}`}
           products={products}

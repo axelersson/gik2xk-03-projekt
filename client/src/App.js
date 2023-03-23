@@ -9,7 +9,7 @@ import ProductDetail from "./views/ProductDetail";
 function App() {
   return (
     <div className="App">
-      <h1>Camel Toe Vol.2</h1>
+      <h1>Vår shop :P</h1>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -20,7 +20,7 @@ function App() {
               <Link to="/cart">Varukorg</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/products/new">halaltech</Link>
+              <Link to="/products/new">Administration</Link>
             </Typography>
           </Toolbar>
         </AppBar>

@@ -9,7 +9,7 @@ function CartList() {
   useEffect(() => {
     getOne(id).then((cart) => setProducts(cart));
   }, []);
-  let summa;
+  let summa = 0;
   return (
     <ul>
       {/* {console.log(cart.products)} */}
@@ -21,16 +21,14 @@ function CartList() {
             </li>
           );
         })}
-      <h1>Summan är {summa}</h1>
       {cart.products &&
         cart.products.map((cartAndProduct) => {
           const currentsum =
             cartAndProduct.cartRow.amount * cartAndProduct.price;
-          console.log(
-            cartAndProduct.cartRow.amount * cartAndProduct.price,
-            "amount"
-          );
-          return (summa += currentsum);
+          console.log(isNaN(currentsum));
+          summa += currentsum;
+          /*  console.log(summa); */
+          /* return (summa += currentsum); */
         })}
       {<h3>Totalkostnad: {summa}</h3>}
     </ul>

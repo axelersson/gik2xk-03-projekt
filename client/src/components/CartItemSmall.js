@@ -1,4 +1,4 @@
-import calculatePrice from "../HelperFunctions/calculatePrice";
+/* import calculatePrice from "../HelperFunctions/calculatePrice"; */
 
 function CartItemSmall({ cartAndProduct }) {
   return (
@@ -11,12 +11,12 @@ function CartItemSmall({ cartAndProduct }) {
         border="1 px solid black"
       />
 
-      {console.log(cartAndProduct)}
+      {/* {console.log(cartAndProduct)} */}
       {<h3>{cartAndProduct.title}</h3>}
       {<h3>{cartAndProduct.price}</h3>}
       {<h3>{cartAndProduct.cartRow.amount} ST</h3>}
-      {<h3>Belopp {calculatePrice(cartAndProduct)}</h3>}
-      {console.log(cartAndProduct.cartRow.amount)}
+      {/* {<h3>Belopp {calculatePrice(cartAndProduct)}</h3>} */}
+      {/* {console.log(cartAndProduct.cartRow.amount)} */}
       {/* 
       <Link to={`/products/${product.id}`}>
         <img

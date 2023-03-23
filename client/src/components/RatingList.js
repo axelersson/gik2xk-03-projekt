@@ -1,32 +1,26 @@
-/* import RatingItemSmall from "./RatingItemSmall"; */
-import { useEffect, useState,} from "react";
-import { getOne } from "../models/ProductModel";
-/* import findRating from "../HelperFunctions/findRating"; */
-import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
 
-function RatingList() {
-  const params = useParams();
-  const productId = params.id
-  const [product, setProducts] = useState([]);
-  useEffect(() => {
-    getOne(productId).then((product) => setProducts(product));
-  }, [productId]);
-  if (product && product.ratings){
-  product.ratings.map((rating) => <Rating name="customized-10" key={`ratingId_${rating.id}`} value={rating.rating} precision={0.5} max={10} />)
+function RatingList({ ratings }) {
+  if (ratings) {
+    ratings.map((rating) => (
+      <Rating
+        name="customized-10"
+        key={`ratingId_${rating.id}`}
+        value={rating.rating}
+        precision={0.5}
+        max={10}
+      />
+    ));
 
-
-  /* return (  
+    /* return (  
     <li key={`ratingId_${rating.id}`}>
       <RatingItemSmall rating={rating} />
       </li>
    ) */
-    }
-  } 
-
+  }
+}
 
 export default RatingList;
-
 
 /* console.log(params.id);
   const [products, setProducts] = useState([]);
