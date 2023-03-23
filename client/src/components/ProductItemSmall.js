@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
-import addToCart from "../HelperFunctions/addToCart" 
+import addToCart from "../HelperFunctions/addToCart";
 
 function ProductItemSmall({ product }) {
   return (
@@ -20,7 +20,9 @@ function ProductItemSmall({ product }) {
         <Link to={`/products/${product.id}/edit`}>
           <Button variant="outlined">Ändra produkt</Button>
         </Link>
-          <Button onClick={addToCart(product.id)} variant="outlined" >Lägg till i varukorg</Button>
+        <Button variant="outlined" onClick={console.log("onclick")}>
+          Lägg till i varukorg
+        </Button>
       </div>
     </>
   );

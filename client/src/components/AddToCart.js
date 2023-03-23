@@ -1,5 +1,7 @@
-function AddToCart() {
-  return <Link to={``}><h2>Lägg till i varukorg</h2></Link>
+/* import { Link } from "react-router-dom";
+
+function addToCart() {
+  return console.log("hej");
 }
 
-export default AddToCart;
+export default addToCart; */

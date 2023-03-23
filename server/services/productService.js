@@ -35,6 +35,7 @@ const {
   createResponseError,
   createResponseMessage,
 } = require("../helpers/responseHelper");
+const product = require("../models/product");
 
 async function getById(id) {
   try {
@@ -185,7 +186,7 @@ async function addCartRow(productId, cartId, amount) {
 
 async function getAllCartRows() {
   try {
-    console.log(association);
+    /* onsole.log(association); */
     const allCartRows = await db.cartRow.findAll();
     return createResponseSuccess(allCartRows);
   } catch (error) {
@@ -231,11 +232,11 @@ async function addProduct(productId, cartId, amount) {
   }
 }
 
-async function getCartRowsById(id) {
+async function getCartAndProductsById(id) {
   try {
-    const oneCartRow = await db.cartRow.findOne({
+    const oneCartRow = await db.cart.findOne({
       where: { id },
-      include: [db.cartrow.product],
+      include: [db.product],
     });
     return createResponseSuccess(oneCartRow);
   } catch (error) {
@@ -254,5 +255,5 @@ module.exports = {
   addCartRow,
   getAllCartRows,
   addProduct,
-  getCartRowsById,
+  getCartAndProductsById,
 };

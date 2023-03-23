@@ -14,15 +14,18 @@ router.post("/:id", (req, res) => {
 module.exports = router;
 
 router.get("/", (req, res) => {
+  cartRowsAndProducts = {};
   productService.getAllCartRows().then((result) => {
-    /*     console.log(result.data) */
-    res.status(result.status).json(result.data);
+    cartRowsAndProducts += result.data;
+    console.log(cartRowsAndProducts);
   });
-});
-
-router.get("/:id", (req, res) => {
-  const id = req.params.id;
-  productService.getCartRowsById(id).then((result) => {
-    res.status(result.status).json(result.data);
+  console.log(cartRowsAndProducts);
+  productService.getAll().then((result) => {
+    cartRowsAndProducts += [result.data];
+    /* res.status(result.status).json(result.data); */
   });
+  console.log(cartRowsAndProducts);
+  res.status(200).json(cartRowsAndProducts);
+  /* res.send().json(cartRowsAndProducts); */
+  /* console.log(cartRowsAndProducts.data); */
 });
