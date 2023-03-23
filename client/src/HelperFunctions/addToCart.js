@@ -1,9 +1,10 @@
 import { create } from "../models/CartModel";
-import "../models/CartModel";
 
-export default function addToCart(id) {
-  /* create(id).then(() => {
-    console.log("Produkten är tillagd i varukorgen");
-  }); */
+function addToCart(id) {
   console.log("hej");
+  create(id).then(() => {
+    console.log("hej");
+  });
 }
+
+export default addToCart;

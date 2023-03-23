@@ -1,7 +1,5 @@
-/* import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function addToCart() {
-  return console.log("hej");
-}
+function addToCart(id) {}
 
-export default addToCart; */
+export default addToCart;
