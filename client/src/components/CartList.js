@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getOne } from "../models/CartModel";
 import CartItemSmall from "./CartItemSmall";
-import calculatePrice from "../HelperFunctions/calculatePrice";
 
 function CartList() {
   const id = 1;

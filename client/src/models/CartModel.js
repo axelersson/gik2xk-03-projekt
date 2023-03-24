@@ -12,8 +12,6 @@ export async function getAll() {
 }
 
 export async function create(id) {
-  console.log("hej från cartmodel");
-  console.log(id);
   const result = await api.post(`/cartRows/${id}`);
 
   if (result.status === 200) return result.data;

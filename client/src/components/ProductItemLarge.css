@@ -1,3 +1,7 @@
+* {
+  list-style-type: none;
+}
+
 .listan {
   display: flex;
   flex-direction: column;

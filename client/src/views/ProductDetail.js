@@ -21,27 +21,28 @@ function ProductDetail() {
      await create(product.id).then(() => console.log('borttaget')); 
     console.log(e)
    } */
-
-  return (
-    <>
-      <ProductItemLarge products={products} />
-      <AddRating id={products.id} />
-      <ul>
-        <RatingList params={params} />
-      </ul>
-      <Link to={`/products/${params.id}/edit`}>
-        <Button variant="outlined">Uppdatera produkt</Button>
-      </Link>
-      <Button
-        onClick={() => {
-          addToCart(params.id);
-        }}
-        variant="outlined"
-      >
-        Lägg till i varukorg
-      </Button>
-    </>
-  );
+  if (products) {
+    return (
+      <>
+        <ProductItemLarge products={products} />
+        <AddRating id={products.id} />
+        <ul>
+          <RatingList params={params} />
+        </ul>
+        <Link to={`/products/${params.id}/edit`}>
+          <Button variant="outlined">Uppdatera produkt</Button>
+        </Link>
+        <Button
+          onClick={() => {
+            addToCart(params.id);
+          }}
+          variant="outlined"
+        >
+          Lägg till i varukorg
+        </Button>
+      </>
+    );
+  }
 }
 
 export default ProductDetail;

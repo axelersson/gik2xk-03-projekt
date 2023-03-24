@@ -9,7 +9,7 @@ import ProductDetail from "./views/ProductDetail";
 function App() {
   return (
     <div className="App">
-      <h1>Vår shop :P</h1>
+      <h1>Silkroad</h1>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
